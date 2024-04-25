@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Demo Store Automation Suite">
+	<test name="Portfolio Test Cases">
+		<classes>
+			<class name="me.abetayev.qa.testsuites.Register" />
+			<class name="me.abetayev.qa.testsuites.Login" />
+			<class name="me.abetayev.qa.testsuites.Search" />
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->
