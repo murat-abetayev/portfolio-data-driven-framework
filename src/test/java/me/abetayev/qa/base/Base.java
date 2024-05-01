@@ -16,6 +16,7 @@ public class Base {
 
     WebDriver driver;
     public Properties prop;
+    public Properties dataProp;
 
     public Base() {
         prop = new Properties();
@@ -24,6 +25,16 @@ public class Base {
         try {
             FileInputStream data = new FileInputStream(propFile);
             prop.load(data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        dataProp = new Properties();
+        File dataPropFile = new File(
+                System.getProperty("user.dir") + "\\src\\main\\java\\me\\abetayev\\qa\\testdata\\testdata.properties");
+        try {
+            FileInputStream data = new FileInputStream(dataPropFile);
+            dataProp.load(data);
         } catch (Exception e) {
             e.printStackTrace();
         }

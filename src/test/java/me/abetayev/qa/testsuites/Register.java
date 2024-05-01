@@ -1,6 +1,8 @@
 package me.abetayev.qa.testsuites;
 
-import org.openqa.selenium.By;
+import me.abetayev.qa.pageObjects.AccountPage;
+import me.abetayev.qa.pageObjects.HomePage;
+import me.abetayev.qa.pageObjects.LoginRegisterPage;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -10,9 +12,11 @@ import org.testng.annotations.Test;
 import me.abetayev.qa.base.Base;
 import me.abetayev.qa.utils.Utilities;
 
-public class Register extends Base{
+public class Register extends Base {
 
     WebDriver driver;
+    LoginRegisterPage loginRegisterPage;
+    AccountPage accountPage;
 
     public Register() {
         super();
@@ -22,7 +26,8 @@ public class Register extends Base{
     public void setup() {
 
         driver = initializeBrowserAndOpenApplication();
-        driver.findElement(By.xpath("//nav[@id='site-navigation']//a[text()='My account']")).click();
+        HomePage homePage = new HomePage(driver);
+        loginRegisterPage = homePage.clickOnMyAccount();
     }
 
     @AfterMethod
@@ -31,19 +36,20 @@ public class Register extends Base{
         driver.quit();
     }
 
-    @Test (priority=1)
+    @Test(priority = 1)
     public void verifyRegisteringAnAccountWithEmail() {
 
-        driver.findElement(By.cssSelector("input#reg_email")).sendKeys(Utilities.generateEmailWithTimeStamp());
-        driver.findElement(By.xpath("//button[text()='Register']")).click();
+        accountPage = loginRegisterPage.register(Utilities.generateEmailWithTimeStamp());
 
-        Assert.assertTrue(driver.findElement(By.xpath("//a[text()='Orders']")).isDisplayed());
+        Assert.assertTrue(accountPage.getDisplayStatusOfOrdersLink());
     }
 
-    @Test (priority=2)
-    public void verifyRegisteringAccountWithInvalidEmail() {
-        driver.findElement(By.cssSelector("input#reg_email")).sendKeys("demouser");
-        driver.findElement(By.xpath("//button[text()='Register']")).click();
+    @Test(priority = 2)
+    public void verifyRegisteringAccountWithExistingEmail() {
 
+        loginRegisterPage.register(dataProp.getProperty("existingCustomerEmail"));
+
+        Assert.assertTrue(loginRegisterPage.retrieveInvalidLoginErrorMessageText()
+                .contains(dataProp.getProperty("accountExistsErrorMessage")));
     }
 }
