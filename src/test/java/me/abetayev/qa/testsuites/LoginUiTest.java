@@ -12,13 +12,13 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class Login extends Base {
+public class LoginUiTest extends Base {
 
-    WebDriver driver;
+    public WebDriver driver;
     LoginRegisterPage loginRegisterPage;
     AccountPage accountPage;
 
-    public Login() {
+    public LoginUiTest() {
         super();
     }
 

@@ -1,17 +1,18 @@
 package me.abetayev.qa.testsuites;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import me.abetayev.qa.base.Base;
 
-public class Search extends Base {
+public class SearchUiTest extends Base {
 
-    WebDriver driver;
+    public WebDriver driver;
 
-    public Search() {
+    public SearchUiTest() {
         super();
     }
 
@@ -28,7 +29,13 @@ public class Search extends Base {
     }
 
     @Test(priority = 1)
-    public void verifySearch() {
+    public void verifyExistingProductSearch() {
+        boolean testFail = false;
+        Assert.assertTrue(testFail);
+    }
+
+    @Test(priority = 2, dependsOnMethods = {"verifyExistingProductSearch"})
+    public void verifyNonExistentProductSearch() {
 
     }
 }

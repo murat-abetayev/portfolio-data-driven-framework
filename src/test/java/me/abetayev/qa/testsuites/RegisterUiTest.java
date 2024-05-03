@@ -12,13 +12,13 @@ import org.testng.annotations.Test;
 import me.abetayev.qa.base.Base;
 import me.abetayev.qa.utils.Utilities;
 
-public class Register extends Base {
+public class RegisterUiTest extends Base {
 
-    WebDriver driver;
+    public WebDriver driver;
     LoginRegisterPage loginRegisterPage;
     AccountPage accountPage;
 
-    public Register() {
+    public RegisterUiTest() {
         super();
     }
 
