@@ -9,10 +9,10 @@ public class LoginRegisterPage {
 
     WebDriver driver;
 
-    @FindBy(css = "input[id='username']")
+    @FindBy(css = "#username")
     private WebElement usernameField;
 
-    @FindBy(css = "input[id='password']")
+    @FindBy(css = "#password")
     private WebElement passwordField;
 
     @FindBy(css = "input#reg_email")
@@ -32,18 +32,6 @@ public class LoginRegisterPage {
         PageFactory.initElements(driver, this);
     }
 
-    public void enterUsername(String username) {
-        usernameField.sendKeys(username);
-    }
-
-    public void enterPassword(String password) {
-        passwordField.sendKeys(password);
-    }
-
-    public void enterRegisterEmail(String email) {
-        registerEmail.sendKeys(email);
-    }
-
     public AccountPage clickOnLoginButton() {
         loginButton.click();
         return new AccountPage(driver);
@@ -53,11 +41,6 @@ public class LoginRegisterPage {
         usernameField.sendKeys(username);
         passwordField.sendKeys(password);
         loginButton.click();
-        return new AccountPage(driver);
-    }
-
-    public AccountPage clickOnRegisterButton() {
-        registerButton.click();
         return new AccountPage(driver);
     }
 
